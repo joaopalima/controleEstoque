@@ -6,7 +6,8 @@
 package br.rj.macae.femass.estoque.dao;
 
 
-import br.rj.macae.femass.estoque.modelo.Empregado;
+
+import br.rj.macae.femass.estoque.modelo.Material;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,77 +19,76 @@ import java.util.List;
  *
  * @author anamm
  */
-public class EmpregadoDAO implements IDAO{
+public class MaterialDAO implements IDAO{
 
     @Override
     public void adicionar(Object o) throws SQLException {
-        Empregado empregado = (Empregado) o;
+        Material material = (Material) o;
         Connection conn = null;
         try {
             conn = FabricaConexao.getConexao();
 
-            String sql = "INSERT INTO public.empregado(\n" +
-"	nome)\n" +
-"	VALUES (?);";
+            String sql = "INSERT INTO public.material(\n" +
+"	nome,  modelo)\n" +
+"	VALUES (?,?);";
             PreparedStatement stmt = conn.prepareStatement(sql);
             // preenche os valores         
-            stmt.setString(1, empregado.getNome());
-            
-            
-            
+            stmt.setString(1, material.getNome());
+            stmt.setString(3, material.getModelo());
+
             stmt.executeUpdate();
             stmt.close();
             
         } catch (SQLException e) {
-            throw new SQLException("Erro ao tentar cadastrar a empregado. \n" + e.getMessage());
+            throw new SQLException("Erro ao tentar cadastrar a material. \n" + e.getMessage());
         }
     }
 
     @Override
     public void alterar(Object o) throws SQLException {
-        Empregado empregado = (Empregado) o;
+        Material material = (Material) o;
         Connection conn = null;
         try {
             conn = FabricaConexao.getConexao();
 
-            String sql = "UPDATE public.empregado\n" +
-"	SET nome=?\n" +
+            String sql = "UPDATE public.material\n" +
+"	SET nome=?,  modelo=?\n" +
 "	WHERE id = ?";
-           /* UPDATE public.empregado
+           /* UPDATE public.material
 	SET id=?, nome=?, descricao
 	WHERE <condition>;
         */
             PreparedStatement stmt = conn.prepareStatement(sql);
             // preenche os valores         
-            stmt.setString(1, empregado.getNome());
-            
-            stmt.setInt(2, empregado.getId());
+            stmt.setString(1, material.getNome());
+            stmt.setString(3, material.getModelo());
+            stmt.setInt(4, material.getId());
             stmt.executeUpdate();
             stmt.close();
             
         } catch (SQLException e) {
-            throw new SQLException("Erro ao tentar alterar a empregado. \n" + e.getMessage());
+            throw new SQLException("Erro ao tentar alterar a material. \n" + e.getMessage());
         }
     }
 
     @Override
     public void excluir(Object o) throws SQLException {
-        Empregado empregado = (Empregado) o;
+        Material material = (Material) o;
         Connection conn = null;
         try {
             conn = FabricaConexao.getConexao();
 
-            String sql = "DELETE FROM public.empregado\n" +
+            String sql = "DELETE FROM public.material\n" +
 "	WHERE id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             // preenche os valores                     
-            stmt.setLong(1, empregado.getId());
+            stmt.setLong(1, material.getId());
             
             stmt.executeUpdate();
             stmt.close();
             
         } catch (SQLException e) {
-            throw new SQLException("Erro ao tentar remover a empregado. \n" + e.getMessage());
+            throw new SQLException("Erro ao tentar remover a material. \n" + e.getMessage());
         }
     }
     
@@ -99,7 +99,7 @@ public class EmpregadoDAO implements IDAO{
         try {
             conn = FabricaConexao.getConexao();
 
-            String sql = "DELETE FROM public.empregado\n" +
+            String sql = "DELETE FROM public.material\n" +
 "	WHERE id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             // preenche os valores                     
@@ -109,7 +109,7 @@ public class EmpregadoDAO implements IDAO{
             stmt.close();
             
         } catch (SQLException e) {
-            throw new SQLException("Erro ao tentar remover a empregado. \n" + e.getMessage());
+            throw new SQLException("Erro ao tentar remover a material. \n" + e.getMessage());
         }
     }
 
@@ -119,13 +119,15 @@ public class EmpregadoDAO implements IDAO{
         Connection conn = null;
         try {
             conn = FabricaConexao.getConexao();
-            String sql = "SELECT id, nome\n" +
-"	FROM public.empregado ORDER BY id ASC;";
+            String sql = "SELECT id, nome, modelo\n" +
+"	FROM public.material ORDER BY id ASC;";
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                Empregado c = new Empregado("");
-                c.setNome(rs.getString("nome"));              
+                Material c = new Material();
+                c.setNome(rs.getString("nome"));  
+
+                c.setModelo(rs.getString("modelo"));
                 c.setId(rs.getInt("id"));
                 
                 lista.add(c);
@@ -136,7 +138,7 @@ public class EmpregadoDAO implements IDAO{
             
             return lista;
         } catch (SQLException e) {
-            throw new SQLException("Eroo ao recuperar a lista de empregados. \n" + e.getMessage());
+            throw new SQLException("Eroo ao recuperar a lista de materials. \n" + e.getMessage());
         }
     }
 
@@ -145,14 +147,15 @@ public class EmpregadoDAO implements IDAO{
         Connection conn = null;
         try {
             conn = FabricaConexao.getConexao();
-            String sql = "SELECT id, nome\n" +
-"	FROM public.empregado WHERE id=?;";
+            String sql = "SELECT id, nome, modelo\n" +
+"	FROM public.material WHERE id=?;";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             rs.next();
-            Empregado c = new Empregado("");
-            c.setNome(rs.getString("nome"));              
+            Material c = new Material();
+            c.setNome(rs.getString("nome"));
+            c.setModelo(rs.getString("modelo"));
             c.setId(rs.getInt("id"));
             
 
@@ -161,7 +164,7 @@ public class EmpregadoDAO implements IDAO{
             
             return c;
         } catch (SQLException e) {
-            throw new SQLException("Erro ao recuperar a empregado. \n" + e.getMessage());
+            throw new SQLException("Erro ao recuperar a material. \n" + e.getMessage());
         }
     }
     

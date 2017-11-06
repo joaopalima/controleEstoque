@@ -18,7 +18,7 @@ public class FabricaConexao {
     public static Connection getConexao() throws SQLException{
         try{
             if (conn==null){
-                conn = DriverManager.getConnection("jdbc:postgresql://localhost:5433/artcenter","postgres","joao"); 
+                conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/almoxarifado","postgres","joao"); 
             }
             return conn;
         }catch(SQLException ex){

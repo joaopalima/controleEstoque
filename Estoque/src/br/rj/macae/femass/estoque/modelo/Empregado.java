@@ -16,6 +16,10 @@ public class Empregado {
     private int id;
     private String nome;
 
+    public Empregado(String nome) {
+        this.nome = nome;
+    }
+
     public int getId() {
         return id;
     }
@@ -57,6 +61,11 @@ public class Empregado {
             return false;
         }
         return true;
+    }
+    
+    @Override
+    public String toString() {
+        return nome ;
     }
     
 }

@@ -6,10 +6,12 @@
 package br.rj.macae.femass.estoque.controle;
 
 
-import br.rj.macae.femass.estoque.dao.EmpregadoDAO;
-import br.rj.macae.femass.estoque.modelo.Empregado;
+
+import br.rj.macae.femass.estoque.dao.MaterialDAO;
+import br.rj.macae.femass.estoque.modelo.Material;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -20,9 +22,9 @@ import javax.swing.table.TableModel;
  *
  * @author anamm
  */
-public class EmpregadoControle{
-    public void gravar(Empregado c)throws SQLException{
-        EmpregadoDAO dao = new EmpregadoDAO();
+public class MaterialControle{
+    public void gravar(Material c)throws SQLException{
+        MaterialDAO dao = new MaterialDAO();
         try{
         if(c.getId()==null || c.getId()<=0)
             dao.adicionar(c);
@@ -32,16 +34,17 @@ public class EmpregadoControle{
             throw new SQLException("Erro ao salvar as informações: \n"+ex.getMessage());
         }
     }
-    public void excluir(Empregado c)throws SQLException{
-        if(JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja excluir esta empregado?")==JOptionPane.YES_OPTION){
-            EmpregadoDAO dao = new EmpregadoDAO();    
+    public void excluir(Material c)throws SQLException{
+        if(JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja excluir esta material?")==JOptionPane.YES_OPTION){
+            MaterialDAO dao = new MaterialDAO();    
             dao.excluir(c);
         }
-        
     }
+    
+    
     public void excluir(Long id)throws SQLException{
-        if(JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja excluir esta empregado?")==JOptionPane.YES_OPTION){
-            EmpregadoDAO dao = new EmpregadoDAO();    
+        if(JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja excluir esta material?")==JOptionPane.YES_OPTION){
+            MaterialDAO dao = new MaterialDAO();    
             dao.excluir(id);
         }
     }
@@ -52,23 +55,22 @@ public class EmpregadoControle{
 
         //limpa as linhas da tabela.
         model.setNumRows(0);
-        EmpregadoDAO dao = new EmpregadoDAO();
-        List empregados = dao.listarTodos();
+        
+        MaterialDAO dao = new MaterialDAO();
+        List materials = dao.listarTodos();
 
         //Adiciona as linhas
-        for (Object o : empregados){
-            Empregado c = (Empregado) o;
+        for (Object o : materials){
+            Material c = (Material) o;
             
-            model.addRow(new Object[]{c.getId(),c.getNome()});
+            model.addRow(new Object[]{c.getId(),c.getNome(),c.getModelo()});
             
-        }
-        
-        
+        }  
     }
 
-    public Empregado getEmpregadoPorId(int id) throws SQLException {
-        EmpregadoDAO dao = new EmpregadoDAO();
-        Empregado c = (Empregado)dao.listarPorId(id);
+    public Material getMaterialPorId(int id) throws SQLException {
+        MaterialDAO dao = new MaterialDAO();
+        Material c = (Material)dao.listarPorId(id);
         return c;       
     }
 }

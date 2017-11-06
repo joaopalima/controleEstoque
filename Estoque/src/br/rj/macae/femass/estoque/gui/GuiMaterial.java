@@ -6,8 +6,8 @@
 package br.rj.macae.femass.estoque.gui;
 
 
-import br.rj.macae.femass.estoque.controle.EmpregadoControle;
-import br.rj.macae.femass.estoque.modelo.Empregado;
+import br.rj.macae.femass.estoque.controle.MaterialControle;
+import br.rj.macae.femass.estoque.modelo.Material;
 import static java.lang.System.exit;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -17,16 +17,16 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jorge
  */
-public class GuiEmpregado extends javax.swing.JInternalFrame {
+public class GuiMaterial extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form guiClient
      */
-    public GuiEmpregado() {
+    public GuiMaterial() {
         initComponents();
         setResizable(false);
         
-        setTitle("Manter Empregados");
+        setTitle("Manter material");
     }
 
     /**
@@ -39,7 +39,7 @@ public class GuiEmpregado extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblEmpregados = new javax.swing.JTable();
+        tblMateriais = new javax.swing.JTable();
         btnNovo = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
@@ -50,6 +50,8 @@ public class GuiEmpregado extends javax.swing.JInternalFrame {
         lbNome = new javax.swing.JLabel();
         btnGravar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        txtModelo = new javax.swing.JTextField();
+        lbModelo = new javax.swing.JLabel();
 
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
@@ -70,19 +72,19 @@ public class GuiEmpregado extends javax.swing.JInternalFrame {
             }
         });
 
-        tblEmpregados.setModel(new javax.swing.table.DefaultTableModel(
+        tblMateriais.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Id", "Nome do empregado"
+                "Id", "Nome da Peça", "Material", "Modelo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -93,12 +95,14 @@ public class GuiEmpregado extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblEmpregados.setGridColor(new java.awt.Color(204, 204, 204));
-        tblEmpregados.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tblEmpregados);
-        if (tblEmpregados.getColumnModel().getColumnCount() > 0) {
-            tblEmpregados.getColumnModel().getColumn(0).setResizable(false);
-            tblEmpregados.getColumnModel().getColumn(1).setResizable(false);
+        tblMateriais.setGridColor(new java.awt.Color(204, 204, 204));
+        tblMateriais.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblMateriais);
+        if (tblMateriais.getColumnModel().getColumnCount() > 0) {
+            tblMateriais.getColumnModel().getColumn(0).setResizable(false);
+            tblMateriais.getColumnModel().getColumn(1).setResizable(false);
+            tblMateriais.getColumnModel().getColumn(2).setResizable(false);
+            tblMateriais.getColumnModel().getColumn(3).setResizable(false);
         }
 
         btnNovo.setText("Novo");
@@ -155,6 +159,8 @@ public class GuiEmpregado extends javax.swing.JInternalFrame {
             }
         });
 
+        lbModelo.setText("Modelo:");
+
         javax.swing.GroupLayout pNovoLayout = new javax.swing.GroupLayout(pNovo);
         pNovo.setLayout(pNovoLayout);
         pNovoLayout.setHorizontalGroup(
@@ -164,13 +170,19 @@ public class GuiEmpregado extends javax.swing.JInternalFrame {
                 .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pNovoLayout.createSequentialGroup()
                         .addComponent(lbNome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(21, 21, 21)
                         .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pNovoLayout.createSequentialGroup()
-                        .addComponent(btnGravar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar)))
-                .addContainerGap(142, Short.MAX_VALUE))
+                    .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(pNovoLayout.createSequentialGroup()
+                            .addComponent(btnCancelar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnGravar)
+                            .addGap(93, 93, 93))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pNovoLayout.createSequentialGroup()
+                            .addComponent(lbModelo)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         pNovoLayout.setVerticalGroup(
             pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,11 +190,15 @@ public class GuiEmpregado extends javax.swing.JInternalFrame {
                 .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGravar)
-                    .addComponent(btnCancelar))
-                .addGap(0, 17, Short.MAX_VALUE))
+                    .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbModelo))
+                .addGap(29, 29, 29)
+                .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnGravar))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -195,7 +211,7 @@ public class GuiEmpregado extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 39, Short.MAX_VALUE))
+                        .addGap(0, 28, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -223,14 +239,12 @@ public class GuiEmpregado extends javax.swing.JInternalFrame {
                     .addComponent(btnNovo)
                     .addComponent(btnAlterar)
                     .addComponent(btnExcluir))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(pNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addGap(99, 99, 99)
                 .addComponent(btnVoltar)
                 .addContainerGap())
         );
-
-        pNovo.getAccessibleContext().setAccessibleName("Novo Empregado");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -241,12 +255,13 @@ public class GuiEmpregado extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        if(tblEmpregados.getSelectedRow()>=0){
-            EmpregadoControle controle = new EmpregadoControle();
-            Object valor=((DefaultTableModel)tblEmpregados.getModel()).getValueAt(tblEmpregados.getSelectedRow(), 0);
+        if(tblMateriais.getSelectedRow()>=0){
+            MaterialControle controle = new MaterialControle();
+            Object valor=((DefaultTableModel)tblMateriais.getModel()).getValueAt(tblMateriais.getSelectedRow(), 0);
             try {
-                Empregado c = controle.getEmpregadoPorId((Integer) valor);
+                Material c = controle.getMaterialPorId((Integer) valor);
                 txtNome.setText(c.getNome());
+                txtModelo.setText(c.getModelo());
                 
                 habilitarCampos();
             } catch (SQLException ex) {
@@ -259,11 +274,11 @@ public class GuiEmpregado extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        if(tblEmpregados.getSelectedRow()>=0){
-            EmpregadoControle controle = new EmpregadoControle();
-            Object valor=((DefaultTableModel)tblEmpregados.getModel()).getValueAt(tblEmpregados.getSelectedRow(), 0);
+        if(tblMateriais.getSelectedRow()>=0){
+            MaterialControle controle = new MaterialControle();
+            Object valor=((DefaultTableModel)tblMateriais.getModel()).getValueAt(tblMateriais.getSelectedRow(), 0);
             try {
-                Empregado c = controle.getEmpregadoPorId((Integer)valor);
+                Material c = controle.getMaterialPorId((Integer)valor);
                 controle.excluir(c);
                 
                 desabilitarCampos();
@@ -277,13 +292,14 @@ public class GuiEmpregado extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
-        EmpregadoControle controle = new EmpregadoControle();
+        MaterialControle controle = new MaterialControle();
 
         try {
-            Empregado c = new Empregado("");
+            Material c = new Material();
             c.setNome(txtNome.getText());
-            if(tblEmpregados.getSelectedRow()>=0){
-            c.setId((Integer) tblEmpregados.getValueAt(tblEmpregados.getSelectedRow(), 0));
+            c.setModelo(txtModelo.getText());
+            if(tblMateriais.getSelectedRow()>=0){
+            c.setId((Integer) tblMateriais.getValueAt(tblMateriais.getSelectedRow(), 0));
         }
         
             controle.gravar(c);
@@ -331,15 +347,18 @@ public class GuiEmpregado extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbModelo;
     private javax.swing.JLabel lbNome;
     private javax.swing.JPanel pNovo;
-    private javax.swing.JTable tblEmpregados;
+    private javax.swing.JTable tblMateriais;
+    private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 
  private void limparCampos() {
         txtNome.setText("");
-        tblEmpregados.clearSelection();   
+        txtModelo.setText("");
+        tblMateriais.clearSelection();   
         
     
     }
@@ -349,20 +368,20 @@ public class GuiEmpregado extends javax.swing.JInternalFrame {
         txtNome.requestFocus(true);
         btnGravar.setVisible(true);     
         btnCancelar.setVisible(true); 
-        tblEmpregados.setEnabled(false);
+        tblMateriais.setEnabled(false);
     }
     private void desabilitarCampos() {
         pNovo.setVisible(false);
         btnGravar.setVisible(false);     
         btnCancelar.setVisible(false);     
-        tblEmpregados.setEnabled(true);
+        tblMateriais.setEnabled(true);
         
     }
     
     private void atualizarLista(){
-           EmpregadoControle controle = new EmpregadoControle();
+           MaterialControle controle = new MaterialControle();
         try {
-            controle.atualizarLista(tblEmpregados);
+            controle.atualizarLista(tblMateriais);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }        
