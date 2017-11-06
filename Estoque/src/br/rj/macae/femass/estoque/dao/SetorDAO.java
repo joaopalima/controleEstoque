@@ -6,7 +6,8 @@
 package br.rj.macae.femass.estoque.dao;
 
 
-import br.rj.macae.femass.estoque.modelo.Empregado;
+
+import br.rj.macae.femass.estoque.modelo.Setor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,76 +19,74 @@ import java.util.List;
  *
  * @author anamm
  */
-public class EmpregadoDAO implements IDAO{
+public class SetorDAO implements IDAO{
 
     @Override
     public void adicionar(Object o) throws SQLException {
-        Empregado empregado = (Empregado) o;
+        Setor setor = (Setor) o;
         Connection conn = null;
         try {
             conn = FabricaConexao.getConexao();
 
-            String sql = "INSERT INTO public.empregado(\n" +
+            String sql = "INSERT INTO public.setor(\n" +
 "	nome)\n" +
 "	VALUES (?);";
             PreparedStatement stmt = conn.prepareStatement(sql);
             // preenche os valores         
-            stmt.setString(1, empregado.getNome());
-            
-            
+            stmt.setString(1, setor.getNome());
             
             stmt.executeUpdate();
             stmt.close();
             
         } catch (SQLException e) {
-            throw new SQLException("Erro ao tentar cadastrar a empregado. \n" + e.getMessage());
+            throw new SQLException("Erro ao tentar cadastrar a setor. \n" + e.getMessage());
         }
     }
 
     @Override
     public void alterar(Object o) throws SQLException {
-        Empregado empregado = (Empregado) o;
+        Setor setor = (Setor) o;
         Connection conn = null;
         try {
             conn = FabricaConexao.getConexao();
 
-            String sql = "UPDATE public.empregado\n" +
+            String sql = "UPDATE public.setor\n" +
 "	SET nome=?\n" +
 "	WHERE id = ?";
-           /* UPDATE public.empregado
+           /* UPDATE public.setor
 	SET id=?, nome=?, descricao
 	WHERE <condition>;
         */
             PreparedStatement stmt = conn.prepareStatement(sql);
             // preenche os valores         
-            stmt.setString(1, empregado.getNome());
-            stmt.setInt(2, empregado.getId());
+            stmt.setString(1, setor.getNome());
+            stmt.setInt(2, setor.getId());
             stmt.executeUpdate();
             stmt.close();
             
         } catch (SQLException e) {
-            throw new SQLException("Erro ao tentar alterar a empregado. \n" + e.getMessage());
+            throw new SQLException("Erro ao tentar alterar a setor. \n" + e.getMessage());
         }
     }
 
     @Override
     public void excluir(Object o) throws SQLException {
-        Empregado empregado = (Empregado) o;
+        Setor setor = (Setor) o;
         Connection conn = null;
         try {
             conn = FabricaConexao.getConexao();
 
-            String sql = "DELETE FROM public.empregado\n" +
+            String sql = "DELETE FROM public.setor\n" +
 "	WHERE id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             // preenche os valores                     
-            stmt.setLong(1, empregado.getId());
+            stmt.setLong(1, setor.getId());
             
             stmt.executeUpdate();
             stmt.close();
             
         } catch (SQLException e) {
-            throw new SQLException("Erro ao tentar remover a empregado. \n" + e.getMessage());
+            throw new SQLException("Erro ao tentar remover a setor. \n" + e.getMessage());
         }
     }
     
@@ -98,7 +97,7 @@ public class EmpregadoDAO implements IDAO{
         try {
             conn = FabricaConexao.getConexao();
 
-            String sql = "DELETE FROM public.empregado\n" +
+            String sql = "DELETE FROM public.setor\n" +
 "	WHERE id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             // preenche os valores                     
@@ -108,7 +107,7 @@ public class EmpregadoDAO implements IDAO{
             stmt.close();
             
         } catch (SQLException e) {
-            throw new SQLException("Erro ao tentar remover a empregado. \n" + e.getMessage());
+            throw new SQLException("Erro ao tentar remover a setor. \n" + e.getMessage());
         }
     }
 
@@ -119,11 +118,11 @@ public class EmpregadoDAO implements IDAO{
         try {
             conn = FabricaConexao.getConexao();
             String sql = "SELECT id, nome\n" +
-"	FROM public.empregado ORDER BY id ASC;";
+"	FROM public.setor ORDER BY id ASC;";
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                Empregado c = new Empregado("");
+                Setor c = new Setor("");
                 c.setNome(rs.getString("nome"));              
                 c.setId(rs.getInt("id"));
                 
@@ -135,7 +134,7 @@ public class EmpregadoDAO implements IDAO{
             
             return lista;
         } catch (SQLException e) {
-            throw new SQLException("Eroo ao recuperar a lista de empregados. \n" + e.getMessage());
+            throw new SQLException("Eroo ao recuperar a lista de setors. \n" + e.getMessage());
         }
     }
 
@@ -145,12 +144,12 @@ public class EmpregadoDAO implements IDAO{
         try {
             conn = FabricaConexao.getConexao();
             String sql = "SELECT id, nome\n" +
-"	FROM public.empregado WHERE id=?;";
+"	FROM public.setor WHERE id=?;";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             rs.next();
-            Empregado c = new Empregado("");
+            Setor c = new Setor("");
             c.setNome(rs.getString("nome"));              
             c.setId(rs.getInt("id"));
             
@@ -160,7 +159,7 @@ public class EmpregadoDAO implements IDAO{
             
             return c;
         } catch (SQLException e) {
-            throw new SQLException("Erro ao recuperar a empregado. \n" + e.getMessage());
+            throw new SQLException("Erro ao recuperar a setor. \n" + e.getMessage());
         }
     }
     

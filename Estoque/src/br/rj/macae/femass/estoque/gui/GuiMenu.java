@@ -9,15 +9,19 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author jorge
+ * @author YMoraes
  */
 public class GuiMenu extends javax.swing.JFrame {
 
+    
     /**
-     * Creates new form GuiMenu
+     * Creates new form guiSystem
      */
     public GuiMenu() {
         initComponents();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setExtendedState(MAXIMIZED_BOTH);
+        
     }
 
     /**
@@ -29,73 +33,137 @@ public class GuiMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        BtnEmpregado = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        desktopPane = new javax.swing.JDesktopPane();
+        menuBar = new javax.swing.JMenuBar();
+        fileMenu = new javax.swing.JMenu();
+        mEmpregado = new javax.swing.JMenuItem();
+        mProduto = new javax.swing.JMenuItem();
+        mSetor = new javax.swing.JMenuItem();
+        mOS = new javax.swing.JMenuItem();
+        mSair = new javax.swing.JMenuItem();
+        helpMenu = new javax.swing.JMenu();
+        contentMenuItem = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(240, 480));
+        setResizable(false);
 
-        BtnEmpregado.setText("EMPREGADO");
-        BtnEmpregado.addActionListener(new java.awt.event.ActionListener() {
+        fileMenu.setMnemonic('f');
+        fileMenu.setText("Menu");
+
+        mEmpregado.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
+        mEmpregado.setMnemonic('o');
+        mEmpregado.setText("Empregado");
+        mEmpregado.setMinimumSize(new java.awt.Dimension(32767, 32767));
+        mEmpregado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnEmpregadoActionPerformed(evt);
+                mEmpregadoActionPerformed(evt);
             }
         });
+        fileMenu.add(mEmpregado);
 
-        jButton2.setText("PRODUTO");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        mProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
+        mProduto.setText("Produto");
+        mProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                mProdutoActionPerformed(evt);
             }
         });
+        fileMenu.add(mProduto);
 
-        jButton3.setText("jButton3");
+        mSetor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
+        mSetor.setMnemonic('s');
+        mSetor.setText("Setor");
+        mSetor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mSetorActionPerformed(evt);
+            }
+        });
+        fileMenu.add(mSetor);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 255, 51));
-        jLabel1.setText("MENU ALMOXARIFADO");
+        mOS.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.ALT_MASK));
+        mOS.setMnemonic('a');
+        mOS.setText("Estoque");
+        mOS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mOSActionPerformed(evt);
+            }
+        });
+        fileMenu.add(mOS);
+
+        mSair.setMnemonic('x');
+        mSair.setText("Sair");
+        mSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mSairActionPerformed(evt);
+            }
+        });
+        fileMenu.add(mSair);
+
+        menuBar.add(fileMenu);
+
+        helpMenu.setMnemonic('h');
+        helpMenu.setText("Ajuda");
+
+        contentMenuItem.setMnemonic('c');
+        contentMenuItem.setText("Sobre");
+        helpMenu.add(contentMenuItem);
+
+        menuBar.add(helpMenu);
+
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(89, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(BtnEmpregado)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addGap(68, 68, 68))
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 865, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel1)
-                .addGap(51, 51, 51)
-                .addComponent(BtnEmpregado)
-                .addGap(28, 28, 28)
-                .addComponent(jButton2)
-                .addGap(28, 28, 28)
-                .addComponent(jButton3)
-                .addContainerGap(69, Short.MAX_VALUE))
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnEmpregadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEmpregadoActionPerformed
-        // TODO add your handling code here:
-        new GuiEmpregado().setVisible(true); 
-        
-    }//GEN-LAST:event_BtnEmpregadoActionPerformed
+    private void mSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mSairActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_mSairActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void mEmpregadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mEmpregadoActionPerformed
+        
+        
+        GuiEmpregado gui= new GuiEmpregado(); 
+        desktopPane.add(gui);      
+        gui.setVisible(true);
+        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        
         // TODO add your handling code here:
-       new GuiProduto().setVisible(true); 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_mEmpregadoActionPerformed
+
+    private void mProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mProdutoActionPerformed
+        GuiProduto gui= new GuiProduto(); 
+        desktopPane.add(gui);      
+        gui.setVisible(true);
+        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        // TODO add your handling code here:
+    }//GEN-LAST:event_mProdutoActionPerformed
+
+    private void mSetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mSetorActionPerformed
+        GuiEquipamento gui= new GuiEquipamento(); 
+        desktopPane.add(gui);
+        gui.setVisible(true);
+        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
+// TODO add your handling code here:
+    }//GEN-LAST:event_mSetorActionPerformed
+
+    private void mOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mOSActionPerformed
+       GuiOS gui= new GuiOS(); 
+        desktopPane.add(gui);
+        gui.setVisible(true);
+        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   // TODO add your handling code here:
+    }//GEN-LAST:event_mOSActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,6 +191,13 @@ public class GuiMenu extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(GuiMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -133,9 +208,16 @@ public class GuiMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnEmpregado;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuItem contentMenuItem;
+    private javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JMenu fileMenu;
+    private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenuItem mEmpregado;
+    private javax.swing.JMenuItem mOS;
+    private javax.swing.JMenuItem mProduto;
+    private javax.swing.JMenuItem mSair;
+    private javax.swing.JMenuItem mSetor;
+    private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
+
 }
