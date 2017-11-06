@@ -280,7 +280,7 @@ public class GuiEmpregado extends javax.swing.JInternalFrame {
         EmpregadoControle controle = new EmpregadoControle();
 
         try {
-            Empregado c = new Empregado("");
+            Empregado c = new Empregado();
             c.setNome(txtNome.getText());
             if(tblEmpregados.getSelectedRow()>=0){
             c.setId((Integer) tblEmpregados.getValueAt(tblEmpregados.getSelectedRow(), 0));

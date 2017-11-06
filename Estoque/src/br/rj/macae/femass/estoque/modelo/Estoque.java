@@ -5,10 +5,16 @@
  */
 package br.rj.macae.femass.estoque.modelo;
 
+import java.util.List;
+
 /**
  *
  * @author jorge
  */
 public class Estoque {
+    
+    private Integer id;
+    private String nome;
+    private List<Produto> produtos;
     
 }

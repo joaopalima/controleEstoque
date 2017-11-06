@@ -151,7 +151,7 @@ public class GuiMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_mProdutoActionPerformed
 
     private void mSetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mSetorActionPerformed
-        GuiEquipamento gui= new GuiEquipamento(); 
+        GuiSetor gui= new GuiSetor(); 
         desktopPane.add(gui);
         gui.setVisible(true);
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   

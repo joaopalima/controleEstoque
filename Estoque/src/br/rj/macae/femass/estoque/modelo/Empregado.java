@@ -13,18 +13,22 @@ import java.util.Objects;
  */
 public class Empregado {
     
-    private int id;
+    private Integer id;
     private String nome;
 
+    public Empregado() {
+    }
+
+    
     public Empregado(String nome) {
         this.nome = nome;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -38,7 +42,7 @@ public class Empregado {
 
     @Override
     public int hashCode() {
-        int hash = 3;
+        Integer hash = 3;
         return hash;
     }
 

@@ -24,10 +24,14 @@ public class EmpregadoControle{
     public void gravar(Empregado c)throws SQLException{
         EmpregadoDAO dao = new EmpregadoDAO();
         try{
-        if(c.getId()==null || c.getId()<=0)
+        if(c.getId()==null || c.getId()<=0){
             dao.adicionar(c);
-        else
+        }
+            
+        else{
             dao.alterar(c);
+        }
+            
         }catch(SQLException ex){
             throw new SQLException("Erro ao salvar as informações: \n"+ex.getMessage());
         }
