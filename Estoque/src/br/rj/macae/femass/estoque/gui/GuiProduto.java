@@ -6,8 +6,8 @@
 package br.rj.macae.femass.estoque.gui;
 
 
-import br.rj.macae.femass.estoque.controle.MaterialControle;
-import br.rj.macae.femass.estoque.modelo.Material;
+import br.rj.macae.femass.estoque.controle.ProdutoControle;
+import br.rj.macae.femass.estoque.modelo.Produto;
 import static java.lang.System.exit;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -17,12 +17,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jorge
  */
-public class GuiMaterial extends javax.swing.JInternalFrame {
+public class GuiProduto extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form guiClient
      */
-    public GuiMaterial() {
+    public GuiProduto() {
         initComponents();
         setResizable(false);
         
@@ -77,14 +77,14 @@ public class GuiMaterial extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Id", "Nome da Peça", "Material", "Modelo"
+                "Id", "Nome da Produto", "Modelo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -102,7 +102,6 @@ public class GuiMaterial extends javax.swing.JInternalFrame {
             tblMateriais.getColumnModel().getColumn(0).setResizable(false);
             tblMateriais.getColumnModel().getColumn(1).setResizable(false);
             tblMateriais.getColumnModel().getColumn(2).setResizable(false);
-            tblMateriais.getColumnModel().getColumn(3).setResizable(false);
         }
 
         btnNovo.setText("Novo");
@@ -256,10 +255,10 @@ public class GuiMaterial extends javax.swing.JInternalFrame {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         if(tblMateriais.getSelectedRow()>=0){
-            MaterialControle controle = new MaterialControle();
+            ProdutoControle controle = new ProdutoControle();
             Object valor=((DefaultTableModel)tblMateriais.getModel()).getValueAt(tblMateriais.getSelectedRow(), 0);
             try {
-                Material c = controle.getMaterialPorId((Integer) valor);
+                Produto c = controle.getMaterialPorId((Integer) valor);
                 txtNome.setText(c.getNome());
                 txtModelo.setText(c.getModelo());
                 
@@ -275,10 +274,10 @@ public class GuiMaterial extends javax.swing.JInternalFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         if(tblMateriais.getSelectedRow()>=0){
-            MaterialControle controle = new MaterialControle();
+            ProdutoControle controle = new ProdutoControle();
             Object valor=((DefaultTableModel)tblMateriais.getModel()).getValueAt(tblMateriais.getSelectedRow(), 0);
             try {
-                Material c = controle.getMaterialPorId((Integer)valor);
+                Produto c = controle.getMaterialPorId((Integer)valor);
                 controle.excluir(c);
                 
                 desabilitarCampos();
@@ -292,10 +291,10 @@ public class GuiMaterial extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
-        MaterialControle controle = new MaterialControle();
+        ProdutoControle controle = new ProdutoControle();
 
         try {
-            Material c = new Material();
+            Produto c = new Produto();
             c.setNome(txtNome.getText());
             c.setModelo(txtModelo.getText());
             if(tblMateriais.getSelectedRow()>=0){
@@ -379,7 +378,7 @@ public class GuiMaterial extends javax.swing.JInternalFrame {
     }
     
     private void atualizarLista(){
-           MaterialControle controle = new MaterialControle();
+           ProdutoControle controle = new ProdutoControle();
         try {
             controle.atualizarLista(tblMateriais);
         } catch (SQLException ex) {

@@ -61,9 +61,7 @@ public class EmpregadoControle{
             
             model.addRow(new Object[]{c.getId(),c.getNome()});
             
-        }
-        
-        
+        }   
     }
 
     public Empregado getEmpregadoPorId(int id) throws SQLException {

@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author jorge
  */
-public class Material {
+public class Produto {
         
     private Integer id;
     private String nome;
@@ -58,7 +58,7 @@ public class Material {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Material other = (Material) obj;
+        final Produto other = (Produto) obj;
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }

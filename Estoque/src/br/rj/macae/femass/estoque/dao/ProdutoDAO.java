@@ -7,7 +7,7 @@ package br.rj.macae.femass.estoque.dao;
 
 
 
-import br.rj.macae.femass.estoque.modelo.Material;
+import br.rj.macae.femass.estoque.modelo.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,11 +19,11 @@ import java.util.List;
  *
  * @author anamm
  */
-public class MaterialDAO implements IDAO{
+public class ProdutoDAO implements IDAO{
 
     @Override
     public void adicionar(Object o) throws SQLException {
-        Material material = (Material) o;
+        Produto material = (Produto) o;
         Connection conn = null;
         try {
             conn = FabricaConexao.getConexao();
@@ -46,7 +46,7 @@ public class MaterialDAO implements IDAO{
 
     @Override
     public void alterar(Object o) throws SQLException {
-        Material material = (Material) o;
+        Produto material = (Produto) o;
         Connection conn = null;
         try {
             conn = FabricaConexao.getConexao();
@@ -73,7 +73,7 @@ public class MaterialDAO implements IDAO{
 
     @Override
     public void excluir(Object o) throws SQLException {
-        Material material = (Material) o;
+        Produto material = (Produto) o;
         Connection conn = null;
         try {
             conn = FabricaConexao.getConexao();
@@ -124,7 +124,7 @@ public class MaterialDAO implements IDAO{
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                Material c = new Material();
+                Produto c = new Produto();
                 c.setNome(rs.getString("nome"));  
 
                 c.setModelo(rs.getString("modelo"));
@@ -153,7 +153,7 @@ public class MaterialDAO implements IDAO{
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             rs.next();
-            Material c = new Material();
+            Produto c = new Produto();
             c.setNome(rs.getString("nome"));
             c.setModelo(rs.getString("modelo"));
             c.setId(rs.getInt("id"));

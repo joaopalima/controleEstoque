@@ -7,8 +7,8 @@ package br.rj.macae.femass.estoque.controle;
 
 
 
-import br.rj.macae.femass.estoque.dao.MaterialDAO;
-import br.rj.macae.femass.estoque.modelo.Material;
+import br.rj.macae.femass.estoque.dao.ProdutoDAO;
+import br.rj.macae.femass.estoque.modelo.Produto;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JList;
@@ -22,9 +22,9 @@ import javax.swing.table.TableModel;
  *
  * @author anamm
  */
-public class MaterialControle{
-    public void gravar(Material c)throws SQLException{
-        MaterialDAO dao = new MaterialDAO();
+public class ProdutoControle{
+    public void gravar(Produto c)throws SQLException{
+        ProdutoDAO dao = new ProdutoDAO();
         try{
         if(c.getId()==null || c.getId()<=0)
             dao.adicionar(c);
@@ -34,9 +34,9 @@ public class MaterialControle{
             throw new SQLException("Erro ao salvar as informações: \n"+ex.getMessage());
         }
     }
-    public void excluir(Material c)throws SQLException{
+    public void excluir(Produto c)throws SQLException{
         if(JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja excluir esta material?")==JOptionPane.YES_OPTION){
-            MaterialDAO dao = new MaterialDAO();    
+            ProdutoDAO dao = new ProdutoDAO();    
             dao.excluir(c);
         }
     }
@@ -44,7 +44,7 @@ public class MaterialControle{
     
     public void excluir(Long id)throws SQLException{
         if(JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja excluir esta material?")==JOptionPane.YES_OPTION){
-            MaterialDAO dao = new MaterialDAO();    
+            ProdutoDAO dao = new ProdutoDAO();    
             dao.excluir(id);
         }
     }
@@ -56,21 +56,21 @@ public class MaterialControle{
         //limpa as linhas da tabela.
         model.setNumRows(0);
         
-        MaterialDAO dao = new MaterialDAO();
+        ProdutoDAO dao = new ProdutoDAO();
         List materials = dao.listarTodos();
 
         //Adiciona as linhas
         for (Object o : materials){
-            Material c = (Material) o;
+            Produto c = (Produto) o;
             
             model.addRow(new Object[]{c.getId(),c.getNome(),c.getModelo()});
             
         }  
     }
 
-    public Material getMaterialPorId(int id) throws SQLException {
-        MaterialDAO dao = new MaterialDAO();
-        Material c = (Material)dao.listarPorId(id);
+    public Produto getMaterialPorId(int id) throws SQLException {
+        ProdutoDAO dao = new ProdutoDAO();
+        Produto c = (Produto)dao.listarPorId(id);
         return c;       
     }
 }
