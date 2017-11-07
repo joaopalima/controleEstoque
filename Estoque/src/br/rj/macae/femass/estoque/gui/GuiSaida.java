@@ -59,7 +59,7 @@ public class GuiSaida extends javax.swing.JInternalFrame {
         lbComentario = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtComentario = new javax.swing.JTextArea();
-        cboEmpregado = new javax.swing.JComboBox();
+        cboEmpregados = new javax.swing.JComboBox();
         lbData2 = new javax.swing.JLabel();
         cboSetor = new javax.swing.JComboBox();
         lbData3 = new javax.swing.JLabel();
@@ -178,6 +178,12 @@ public class GuiSaida extends javax.swing.JInternalFrame {
         txtComentario.setRows(5);
         jScrollPane2.setViewportView(txtComentario);
 
+        cboEmpregados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboEmpregadosActionPerformed(evt);
+            }
+        });
+
         lbData2.setText("Empregado:");
 
         lbData3.setText("Setor:");
@@ -211,6 +217,12 @@ public class GuiSaida extends javax.swing.JInternalFrame {
 
         lbData5.setText("Qtd:");
 
+        txtQtd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQtdActionPerformed(evt);
+            }
+        });
+
         lbData6.setText("Un:");
 
         javax.swing.GroupLayout pNovoLayout = new javax.swing.GroupLayout(pNovo);
@@ -218,53 +230,47 @@ public class GuiSaida extends javax.swing.JInternalFrame {
         pNovoLayout.setHorizontalGroup(
             pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pNovoLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pNovoLayout.createSequentialGroup()
-                        .addComponent(lbComentario)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 792, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pNovoLayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(btnCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnGravar))
-                    .addGroup(pNovoLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addGap(19, 19, 19)
                         .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pNovoLayout.createSequentialGroup()
                                 .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbData)
                                     .addComponent(lbData2)
                                     .addComponent(lbData4)
-                                    .addComponent(lbComentario1))
+                                    .addComponent(lbComentario1)
+                                    .addComponent(lbData3)
+                                    .addComponent(lbComentario))
                                 .addGap(31, 31, 31)
                                 .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(pNovoLayout.createSequentialGroup()
-                                        .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(cboProduto, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(cboEmpregado, javax.swing.GroupLayout.Alignment.LEADING, 0, 160, Short.MAX_VALUE))
+                                        .addComponent(cboProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(pNovoLayout.createSequentialGroup()
-                                                .addComponent(lbData3)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(cboSetor, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(pNovoLayout.createSequentialGroup()
-                                                .addComponent(lbData5)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(txtQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(lbData6)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtUn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(btnRmv, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 792, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(lbData5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lbData6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtUn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnRmv, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(cboSetor, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cboEmpregados, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtData, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(pNovoLayout.createSequentialGroup()
+                                .addComponent(btnCancelar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnGravar)))))
                 .addGap(0, 10, Short.MAX_VALUE))
         );
         pNovoLayout.setVerticalGroup(
@@ -274,15 +280,17 @@ public class GuiSaida extends javax.swing.JInternalFrame {
                 .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbData)
                     .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
                 .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbData2)
-                    .addComponent(cboEmpregado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboEmpregados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbData3)
                     .addComponent(cboSetor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lbData6)
@@ -300,10 +308,8 @@ public class GuiSaida extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pNovoLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(lbComentario))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbComentario))
                 .addGap(18, 18, 18)
                 .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCancelar)
@@ -342,7 +348,7 @@ public class GuiSaida extends javax.swing.JInternalFrame {
                         .addComponent(btnFechar)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
+                        .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnNovo)
                             .addComponent(btnAlterar)
@@ -350,7 +356,7 @@ public class GuiSaida extends javax.swing.JInternalFrame {
                             .addComponent(btnAtualizar))
                         .addGap(18, 18, 18)
                         .addComponent(pNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(47, Short.MAX_VALUE))))
+                        .addContainerGap(38, Short.MAX_VALUE))))
         );
 
         pack();
@@ -370,7 +376,7 @@ public class GuiSaida extends javax.swing.JInternalFrame {
             Saida c = controle.getSaidaPorId((Integer) valor);
             txtData.setText(c.getData());
             txtComentario.setText(c.getComentario());  
-            cboEmpregado.setSelectedItem(c.getEmpregado());
+            cboEmpregados.setSelectedItem(c.getEmpregado());
             cboSetor.setSelectedItem(c.getProduto());
 
                 habilitarCampos();
@@ -408,7 +414,7 @@ public class GuiSaida extends javax.swing.JInternalFrame {
             Saida c = new Saida();
             c.setData(txtData.getText());
             c.setComentario(txtComentario.getText());
-            c.setEmpregado((Empregado) cboEmpregado.getSelectedItem());
+            c.setEmpregado((Empregado) cboEmpregados.getSelectedItem());
             c.setProduto((Produto) cboSetor.getSelectedItem());
             
             for(int i=0; i<lstProdutos.getModel().getSize();i++){            
@@ -468,7 +474,7 @@ public class GuiSaida extends javax.swing.JInternalFrame {
     private void btnRmvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRmvActionPerformed
         
         if(lstProdutos.isSelectionEmpty()){
-        JOptionPane.showMessageDialog(this, "Selecione um material da lista para excluir");
+        JOptionPane.showMessageDialog(this, "Selecione um produto da lista para excluir");
         return;
         }
         Saida_Produto ri = new Saida_Produto();
@@ -478,6 +484,14 @@ public class GuiSaida extends javax.swing.JInternalFrame {
         
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRmvActionPerformed
+
+    private void cboEmpregadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEmpregadosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboEmpregadosActionPerformed
+
+    private void txtQtdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQtdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtQtdActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -490,7 +504,7 @@ public class GuiSaida extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnGravar;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnRmv;
-    private javax.swing.JComboBox cboEmpregado;
+    private javax.swing.JComboBox cboEmpregados;
     private javax.swing.JComboBox cboProduto;
     private javax.swing.JComboBox cboSetor;
     private javax.swing.JScrollPane jScrollPane1;
@@ -522,7 +536,7 @@ public class GuiSaida extends javax.swing.JInternalFrame {
         lstProdutos.clearSelection();
         try {
             atualizarComboEmpregado();
-            cboEmpregado.setSelectedIndex(-1);
+            cboEmpregados.setSelectedIndex(-1);
             atualizarComboProduto();
             cboSetor.setSelectedIndex(-1);
             atualizarComboProduto();
@@ -561,9 +575,9 @@ public class GuiSaida extends javax.swing.JInternalFrame {
     private void atualizarComboEmpregado() throws SQLException {
         SaidaControle controle = new SaidaControle();
         List clientes = controle.listarEmpregados();
-        cboEmpregado.removeAllItems();
+        cboEmpregados.removeAllItems();
         for(Object o:clientes){
-            cboEmpregado.addItem(o);
+            cboEmpregados.addItem(o);
         }
     }
     
@@ -578,11 +592,11 @@ public class GuiSaida extends javax.swing.JInternalFrame {
         
         private void atualizarComboProduto() {
         SaidaControle controle = new SaidaControle();
-        List materiais;
+        List produtos;
         try {
-            materiais = controle.listarMateriais();
+            produtos = controle.listarProdutos();
             cboProduto.removeAllItems();
-             for(Object o:materiais){
+             for(Object o:produtos){
                 cboProduto.addItem(o);
             }
         } catch (SQLException ex) {
