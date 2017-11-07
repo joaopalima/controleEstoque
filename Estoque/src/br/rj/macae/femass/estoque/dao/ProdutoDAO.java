@@ -34,7 +34,7 @@ public class ProdutoDAO implements IDAO{
             PreparedStatement stmt = conn.prepareStatement(sql);
             // preenche os valores         
             stmt.setString(1, material.getNome());
-            stmt.setString(3, material.getModelo());
+            stmt.setString(2, material.getModelo());
 
             stmt.executeUpdate();
             stmt.close();
@@ -55,14 +55,14 @@ public class ProdutoDAO implements IDAO{
 "	SET nome=?,  modelo=?\n" +
 "	WHERE id = ?";
            /* UPDATE public.material
-	SET id=?, nome=?, descricao
+	SET id=?, nome=?
 	WHERE <condition>;
         */
             PreparedStatement stmt = conn.prepareStatement(sql);
             // preenche os valores         
             stmt.setString(1, material.getNome());
-            stmt.setString(3, material.getModelo());
-            stmt.setInt(4, material.getId());
+            stmt.setString(2, material.getModelo());
+            stmt.setInt(3, material.getId());
             stmt.executeUpdate();
             stmt.close();
             

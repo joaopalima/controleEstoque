@@ -34,8 +34,6 @@ public class EmpregadoDAO implements IDAO{
             // preenche os valores         
             stmt.setString(1, empregado.getNome());
             
-            
-            
             stmt.executeUpdate();
             stmt.close();
             

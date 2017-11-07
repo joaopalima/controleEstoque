@@ -88,7 +88,7 @@ public class SaidaControle{
         return dao.listarTodos();
     }
     
-    public List listarProdutos() throws SQLException {
+    public List listarProduto() throws SQLException {
         ProdutoDAO dao = new ProdutoDAO();
         return dao.listarTodos();
     }
