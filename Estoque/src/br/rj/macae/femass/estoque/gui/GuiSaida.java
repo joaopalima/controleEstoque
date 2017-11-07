@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author YMoraes
+ * @author jorge
  */
 public class GuiSaida extends javax.swing.JInternalFrame {
 

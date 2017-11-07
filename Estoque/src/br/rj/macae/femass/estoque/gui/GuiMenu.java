@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author YMoraes
+ * @author jorge
  */
 public class GuiMenu extends javax.swing.JFrame {
 

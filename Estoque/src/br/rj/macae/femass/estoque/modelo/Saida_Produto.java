@@ -13,7 +13,7 @@ import javax.swing.JList;
 
 /**
  *
- * @author YMoraes
+ * @author jorge
  */
 public class Saida_Produto {
     
