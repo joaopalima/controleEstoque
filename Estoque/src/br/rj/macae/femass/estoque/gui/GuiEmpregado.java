@@ -43,7 +43,7 @@ public class GuiEmpregado extends javax.swing.JInternalFrame {
         btnNovo = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
-        btnVoltar = new javax.swing.JButton();
+        btnFechar = new javax.swing.JButton();
         btnAtualizar = new javax.swing.JButton();
         pNovo = new javax.swing.JPanel();
         txtNome = new javax.swing.JTextField();
@@ -122,10 +122,10 @@ public class GuiEmpregado extends javax.swing.JInternalFrame {
             }
         });
 
-        btnVoltar.setText("Voltar");
-        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+        btnFechar.setText("Fechar");
+        btnFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVoltarActionPerformed(evt);
+                btnFecharActionPerformed(evt);
             }
         });
 
@@ -209,7 +209,7 @@ public class GuiEmpregado extends javax.swing.JInternalFrame {
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnVoltar)
+                .addComponent(btnFechar)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -225,8 +225,8 @@ public class GuiEmpregado extends javax.swing.JInternalFrame {
                     .addComponent(btnExcluir))
                 .addGap(27, 27, 27)
                 .addComponent(pNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                .addComponent(btnVoltar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(btnFechar)
                 .addContainerGap())
         );
 
@@ -303,9 +303,9 @@ public class GuiEmpregado extends javax.swing.JInternalFrame {
         desabilitarCampos();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
         this.dispose();
-    }//GEN-LAST:event_btnVoltarActionPerformed
+    }//GEN-LAST:event_btnFecharActionPerformed
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
          
@@ -327,9 +327,9 @@ public class GuiEmpregado extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnFechar;
     private javax.swing.JButton btnGravar;
     private javax.swing.JButton btnNovo;
-    private javax.swing.JButton btnVoltar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbNome;
     private javax.swing.JPanel pNovo;

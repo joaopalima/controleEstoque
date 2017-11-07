@@ -26,7 +26,7 @@ public class GuiProduto extends javax.swing.JInternalFrame {
         initComponents();
         setResizable(false);
         
-        setTitle("Manter material");
+        setTitle("Manter produto");
     }
 
     /**
@@ -39,11 +39,11 @@ public class GuiProduto extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblMateriais = new javax.swing.JTable();
+        tbProdutos = new javax.swing.JTable();
         btnNovo = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
-        btnVoltar = new javax.swing.JButton();
+        btnFechar = new javax.swing.JButton();
         btnAtualizar = new javax.swing.JButton();
         pNovo = new javax.swing.JPanel();
         txtNome = new javax.swing.JTextField();
@@ -72,7 +72,7 @@ public class GuiProduto extends javax.swing.JInternalFrame {
             }
         });
 
-        tblMateriais.setModel(new javax.swing.table.DefaultTableModel(
+        tbProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -95,13 +95,13 @@ public class GuiProduto extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblMateriais.setGridColor(new java.awt.Color(204, 204, 204));
-        tblMateriais.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(tblMateriais);
-        if (tblMateriais.getColumnModel().getColumnCount() > 0) {
-            tblMateriais.getColumnModel().getColumn(0).setResizable(false);
-            tblMateriais.getColumnModel().getColumn(1).setResizable(false);
-            tblMateriais.getColumnModel().getColumn(2).setResizable(false);
+        tbProdutos.setGridColor(new java.awt.Color(204, 204, 204));
+        tbProdutos.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tbProdutos);
+        if (tbProdutos.getColumnModel().getColumnCount() > 0) {
+            tbProdutos.getColumnModel().getColumn(0).setResizable(false);
+            tbProdutos.getColumnModel().getColumn(1).setResizable(false);
+            tbProdutos.getColumnModel().getColumn(2).setResizable(false);
         }
 
         btnNovo.setText("Novo");
@@ -125,14 +125,13 @@ public class GuiProduto extends javax.swing.JInternalFrame {
             }
         });
 
-        btnVoltar.setText("Voltar");
-        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+        btnFechar.setText("Fechar");
+        btnFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVoltarActionPerformed(evt);
+                btnFecharActionPerformed(evt);
             }
         });
 
-        btnAtualizar.setForeground(new java.awt.Color(102, 102, 102));
         btnAtualizar.setText("Atualizar");
         btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,16 +170,14 @@ public class GuiProduto extends javax.swing.JInternalFrame {
                         .addComponent(lbNome)
                         .addGap(21, 21, 21)
                         .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(pNovoLayout.createSequentialGroup()
-                            .addComponent(btnCancelar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnGravar)
-                            .addGap(93, 93, 93))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pNovoLayout.createSequentialGroup()
-                            .addComponent(lbModelo)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(pNovoLayout.createSequentialGroup()
+                        .addComponent(btnCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnGravar))
+                    .addGroup(pNovoLayout.createSequentialGroup()
+                        .addComponent(lbModelo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(136, Short.MAX_VALUE))
         );
         pNovoLayout.setVerticalGroup(
@@ -193,11 +190,11 @@ public class GuiProduto extends javax.swing.JInternalFrame {
                 .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbModelo))
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addGroup(pNovoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnGravar))
-                .addContainerGap(30, Short.MAX_VALUE))
+                    .addComponent(btnGravar)
+                    .addComponent(btnCancelar))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -206,42 +203,38 @@ public class GuiProduto extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
+                .addGap(99, 99, 99)
+                .addComponent(btnNovo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAlterar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnExcluir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAtualizar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 28, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnNovo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAlterar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnExcluir)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(btnAtualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                .addComponent(pNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 28, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnVoltar)
+                .addComponent(btnFechar)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo)
                     .addComponent(btnAlterar)
-                    .addComponent(btnExcluir))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                    .addComponent(btnExcluir)
+                    .addComponent(btnAtualizar))
+                .addGap(38, 38, 38)
                 .addComponent(pNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99)
-                .addComponent(btnVoltar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(btnFechar)
                 .addContainerGap())
         );
 
@@ -254,11 +247,11 @@ public class GuiProduto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        if(tblMateriais.getSelectedRow()>=0){
+        if(tbProdutos.getSelectedRow()>=0){
             ProdutoControle controle = new ProdutoControle();
-            Object valor=((DefaultTableModel)tblMateriais.getModel()).getValueAt(tblMateriais.getSelectedRow(), 0);
+            Object valor=((DefaultTableModel)tbProdutos.getModel()).getValueAt(tbProdutos.getSelectedRow(), 0);
             try {
-                Produto c = controle.getMaterialPorId((Integer) valor);
+                Produto c = controle.getProdutoPorId((Integer) valor);
                 txtNome.setText(c.getNome());
                 txtModelo.setText(c.getModelo());
                 
@@ -273,11 +266,11 @@ public class GuiProduto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        if(tblMateriais.getSelectedRow()>=0){
+        if(tbProdutos.getSelectedRow()>=0){
             ProdutoControle controle = new ProdutoControle();
-            Object valor=((DefaultTableModel)tblMateriais.getModel()).getValueAt(tblMateriais.getSelectedRow(), 0);
+            Object valor=((DefaultTableModel)tbProdutos.getModel()).getValueAt(tbProdutos.getSelectedRow(), 0);
             try {
-                Produto c = controle.getMaterialPorId((Integer)valor);
+                Produto c = controle.getProdutoPorId((Integer)valor);
                 controle.excluir(c);
                 
                 desabilitarCampos();
@@ -297,8 +290,8 @@ public class GuiProduto extends javax.swing.JInternalFrame {
             Produto c = new Produto();
             c.setNome(txtNome.getText());
             c.setModelo(txtModelo.getText());
-            if(tblMateriais.getSelectedRow()>=0){
-            c.setId((Integer) tblMateriais.getValueAt(tblMateriais.getSelectedRow(), 0));
+            if(tbProdutos.getSelectedRow()>=0){
+            c.setId((Integer) tbProdutos.getValueAt(tbProdutos.getSelectedRow(), 0));
         }
         
             controle.gravar(c);
@@ -318,9 +311,9 @@ public class GuiProduto extends javax.swing.JInternalFrame {
         desabilitarCampos();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
         this.dispose();
-    }//GEN-LAST:event_btnVoltarActionPerformed
+    }//GEN-LAST:event_btnFecharActionPerformed
 
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
          
@@ -342,14 +335,14 @@ public class GuiProduto extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnFechar;
     private javax.swing.JButton btnGravar;
     private javax.swing.JButton btnNovo;
-    private javax.swing.JButton btnVoltar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbModelo;
     private javax.swing.JLabel lbNome;
     private javax.swing.JPanel pNovo;
-    private javax.swing.JTable tblMateriais;
+    private javax.swing.JTable tbProdutos;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
@@ -357,7 +350,7 @@ public class GuiProduto extends javax.swing.JInternalFrame {
  private void limparCampos() {
         txtNome.setText("");
         txtModelo.setText("");
-        tblMateriais.clearSelection();   
+        tbProdutos.clearSelection();   
         
     
     }
@@ -367,20 +360,20 @@ public class GuiProduto extends javax.swing.JInternalFrame {
         txtNome.requestFocus(true);
         btnGravar.setVisible(true);     
         btnCancelar.setVisible(true); 
-        tblMateriais.setEnabled(false);
+        tbProdutos.setEnabled(false);
     }
     private void desabilitarCampos() {
         pNovo.setVisible(false);
         btnGravar.setVisible(false);     
         btnCancelar.setVisible(false);     
-        tblMateriais.setEnabled(true);
+        tbProdutos.setEnabled(true);
         
     }
     
     private void atualizarLista(){
            ProdutoControle controle = new ProdutoControle();
         try {
-            controle.atualizarLista(tblMateriais);
+            controle.atualizarLista(tbProdutos);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }        

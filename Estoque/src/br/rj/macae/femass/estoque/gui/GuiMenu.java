@@ -38,7 +38,7 @@ public class GuiMenu extends javax.swing.JFrame {
         fileMenu = new javax.swing.JMenu();
         mEmpregado = new javax.swing.JMenuItem();
         mProduto = new javax.swing.JMenuItem();
-        mSetor = new javax.swing.JMenuItem();
+        mSaida = new javax.swing.JMenuItem();
         mOS = new javax.swing.JMenuItem();
         mSair = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
@@ -71,19 +71,19 @@ public class GuiMenu extends javax.swing.JFrame {
         });
         fileMenu.add(mProduto);
 
-        mSetor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
-        mSetor.setMnemonic('s');
-        mSetor.setText("Setor");
-        mSetor.addActionListener(new java.awt.event.ActionListener() {
+        mSaida.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
+        mSaida.setMnemonic('s');
+        mSaida.setText("Saida");
+        mSaida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mSetorActionPerformed(evt);
+                mSaidaActionPerformed(evt);
             }
         });
-        fileMenu.add(mSetor);
+        fileMenu.add(mSaida);
 
         mOS.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.ALT_MASK));
         mOS.setMnemonic('a');
-        mOS.setText("Estoque");
+        mOS.setText("Setor");
         mOS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mOSActionPerformed(evt);
@@ -131,39 +131,36 @@ public class GuiMenu extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_mSairActionPerformed
 
-    private void mEmpregadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mEmpregadoActionPerformed
-        
-        
-        GuiEmpregado gui= new GuiEmpregado(); 
-        desktopPane.add(gui);      
-        gui.setVisible(true);
-        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mEmpregadoActionPerformed
-
-    private void mProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mProdutoActionPerformed
-        GuiProduto gui= new GuiProduto(); 
-        desktopPane.add(gui);      
-        gui.setVisible(true);
-        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        // TODO add your handling code here:
-    }//GEN-LAST:event_mProdutoActionPerformed
-
-    private void mSetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mSetorActionPerformed
-        GuiSetor gui= new GuiSetor(); 
-        desktopPane.add(gui);
-        gui.setVisible(true);
-        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
-// TODO add your handling code here:
-    }//GEN-LAST:event_mSetorActionPerformed
-
     private void mOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mOSActionPerformed
-       GuiOS gui= new GuiOS(); 
+        GuiSetor gui= new GuiSetor();
         desktopPane.add(gui);
         gui.setVisible(true);
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   // TODO add your handling code here:
     }//GEN-LAST:event_mOSActionPerformed
+
+    private void mSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mSaidaActionPerformed
+        GuiSaida gui= new GuiSaida();
+        desktopPane.add(gui);
+        gui.setVisible(true);
+        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mSaidaActionPerformed
+
+    private void mProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mProdutoActionPerformed
+        GuiProduto gui= new GuiProduto();
+        desktopPane.add(gui);
+        gui.setVisible(true);
+        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mProdutoActionPerformed
+
+    private void mEmpregadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mEmpregadoActionPerformed
+        GuiEmpregado gui= new GuiEmpregado();
+        desktopPane.add(gui);
+        gui.setVisible(true);
+        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mEmpregadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,8 +212,8 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem mEmpregado;
     private javax.swing.JMenuItem mOS;
     private javax.swing.JMenuItem mProduto;
+    private javax.swing.JMenuItem mSaida;
     private javax.swing.JMenuItem mSair;
-    private javax.swing.JMenuItem mSetor;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
 
