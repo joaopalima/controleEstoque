@@ -11,6 +11,7 @@ import br.rj.macae.femass.estoque.modelo.Empregado;
 import br.rj.macae.femass.estoque.modelo.Produto;
 import br.rj.macae.femass.estoque.modelo.Saida;
 import br.rj.macae.femass.estoque.modelo.Saida_Produto;
+import br.rj.macae.femass.estoque.modelo.Setor;
 import static java.lang.System.exit;
 import java.sql.SQLException;
 import java.util.List;
@@ -186,6 +187,12 @@ public class GuiSaida extends javax.swing.JInternalFrame {
 
         lbData2.setText("Empregado:");
 
+        cboSetor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboSetorActionPerformed(evt);
+            }
+        });
+
         lbData3.setText("Setor:");
 
         jScrollPane3.setViewportView(lstProdutos);
@@ -320,11 +327,10 @@ public class GuiSaida extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 997, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(btnFechar)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -337,17 +343,19 @@ public class GuiSaida extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAtualizar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 490, Short.MAX_VALUE)
-                        .addComponent(btnFechar)
-                        .addContainerGap())
+                        .addContainerGap(627, Short.MAX_VALUE)
+                        .addComponent(btnFechar))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnNovo)
@@ -356,7 +364,8 @@ public class GuiSaida extends javax.swing.JInternalFrame {
                             .addComponent(btnAtualizar))
                         .addGap(18, 18, 18)
                         .addComponent(pNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(38, Short.MAX_VALUE))))
+                        .addGap(0, 31, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
@@ -415,7 +424,8 @@ public class GuiSaida extends javax.swing.JInternalFrame {
             c.setData(txtData.getText());
             c.setComentario(txtComentario.getText());
             c.setEmpregado((Empregado) cboEmpregados.getSelectedItem());
-            c.setProduto((Produto) cboSetor.getSelectedItem());
+            c.setProduto((Produto) cboProduto.getSelectedItem());
+            c.setSetor((Setor) cboSetor.getSelectedItem());
             
             for(int i=0; i<lstProdutos.getModel().getSize();i++){            
             c.setProduto((Saida_Produto) lstProdutos.getModel().getElementAt(i));
@@ -493,6 +503,10 @@ public class GuiSaida extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtQtdActionPerformed
 
+    private void cboSetorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSetorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboSetorActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -539,7 +553,7 @@ public class GuiSaida extends javax.swing.JInternalFrame {
             cboEmpregados.setSelectedIndex(-1);
             atualizarComboProduto();
             cboSetor.setSelectedIndex(-1);
-            atualizarComboProduto();
+            atualizarComboSetor();
             cboProduto.setSelectedIndex(-1);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
@@ -574,9 +588,9 @@ public class GuiSaida extends javax.swing.JInternalFrame {
     
     private void atualizarComboEmpregado() throws SQLException {
         SaidaControle controle = new SaidaControle();
-        List clientes = controle.listarEmpregados();
+        List empregados = controle.listarEmpregados();
         cboEmpregados.removeAllItems();
-        for(Object o:clientes){
+        for(Object o:empregados){
             cboEmpregados.addItem(o);
         }
     }
@@ -584,13 +598,22 @@ public class GuiSaida extends javax.swing.JInternalFrame {
         private void atualizarComboProduto() throws SQLException {
         SaidaControle controle = new SaidaControle();
         List equipamentos = controle.listarProdutos();
-        cboSetor.removeAllItems();
+        cboProduto.removeAllItems();
         for(Object o:equipamentos){
+            cboProduto.addItem(o);
+        }
+    }
+        
+            private void atualizarComboSetor() throws SQLException {
+        SaidaControle controle = new SaidaControle();
+        List setor = controle.listarSetor();
+        cboSetor.removeAllItems();
+        for(Object o:setor){
             cboSetor.addItem(o);
         }
     }
         
-        private void atualizarComboProduto() {
+        private void atualizarProduto() {
         SaidaControle controle = new SaidaControle();
         List produtos;
         try {

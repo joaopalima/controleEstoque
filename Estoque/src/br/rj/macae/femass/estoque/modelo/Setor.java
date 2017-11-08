@@ -17,8 +17,8 @@ public class Setor {
     private Integer id;
     private String nome;
 
-    public Setor(String nome) {
-        this.nome = nome;
+    public Setor() {
+        
     }
 
     public Integer getId() {

@@ -11,6 +11,7 @@ package br.rj.macae.femass.estoque.controle;
 import br.rj.macae.femass.estoque.dao.EmpregadoDAO;
 import br.rj.macae.femass.estoque.dao.ProdutoDAO;
 import br.rj.macae.femass.estoque.dao.SaidaDAO;
+import br.rj.macae.femass.estoque.dao.SetorDAO;
 import br.rj.macae.femass.estoque.modelo.Saida;
 import java.sql.SQLException;
 import java.util.List;
@@ -52,8 +53,7 @@ public class SaidaControle{
     public void atualizarLista(JTable tabela) throws SQLException{
         DefaultTableModel model = (DefaultTableModel) tabela.getModel();
         TableColumnModel modeloDaColuna = tabela.getColumnModel();
-        modeloDaColuna.getColumn(0).setMaxWidth(25);
-        modeloDaColuna.getColumn(4).setMaxWidth(150);
+       
 
         //limpa as linhas da tabela.
         model.setNumRows(0);
@@ -65,14 +65,14 @@ public class SaidaControle{
         for (Object o : materials){
             Saida c = (Saida) o;
             
-            model.addRow(new Object[]{c.getId(),c.getData(), c.getComentario(), c.getEmpregado(),c.getProduto()});
+            model.addRow(new Object[]{c.getId(),c.getData(), c.getComentario(),c.getProduto(), c.getEmpregado()});
             
         }
         
         
     }
 
-    public Saida getsaidaPorId(int id) throws SQLException {
+    public Saida getSaidaPorId(int id) throws SQLException {
         SaidaDAO dao = new SaidaDAO();
         Saida c = (Saida)dao.listarPorId(id);
         return c;       
@@ -88,8 +88,8 @@ public class SaidaControle{
         return dao.listarTodos();
     }
     
-    public List listarProduto() throws SQLException {
-        ProdutoDAO dao = new ProdutoDAO();
+    public List listarSetor() throws SQLException {
+        SetorDAO dao = new SetorDAO();
         return dao.listarTodos();
     }
     

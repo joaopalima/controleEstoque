@@ -23,72 +23,72 @@ public class ProdutoDAO implements IDAO{
 
     @Override
     public void adicionar(Object o) throws SQLException {
-        Produto material = (Produto) o;
+        Produto produto = (Produto) o;
         Connection conn = null;
         try {
             conn = FabricaConexao.getConexao();
 
-            String sql = "INSERT INTO public.material(\n" +
+            String sql = "INSERT INTO public.produto(\n" +
 "	nome,  modelo)\n" +
 "	VALUES (?,?);";
             PreparedStatement stmt = conn.prepareStatement(sql);
             // preenche os valores         
-            stmt.setString(1, material.getNome());
-            stmt.setString(2, material.getModelo());
+            stmt.setString(1, produto.getNome());
+            stmt.setString(2, produto.getModelo());
 
             stmt.executeUpdate();
             stmt.close();
             
         } catch (SQLException e) {
-            throw new SQLException("Erro ao tentar cadastrar a material. \n" + e.getMessage());
+            throw new SQLException("Erro ao tentar cadastrar a produto. \n" + e.getMessage());
         }
     }
 
     @Override
     public void alterar(Object o) throws SQLException {
-        Produto material = (Produto) o;
+        Produto produto = (Produto) o;
         Connection conn = null;
         try {
             conn = FabricaConexao.getConexao();
 
-            String sql = "UPDATE public.material\n" +
+            String sql = "UPDATE public.produto\n" +
 "	SET nome=?,  modelo=?\n" +
 "	WHERE id = ?";
-           /* UPDATE public.material
+           /* UPDATE public.produto
 	SET id=?, nome=?
 	WHERE <condition>;
         */
             PreparedStatement stmt = conn.prepareStatement(sql);
             // preenche os valores         
-            stmt.setString(1, material.getNome());
-            stmt.setString(2, material.getModelo());
-            stmt.setInt(3, material.getId());
+            stmt.setString(1, produto.getNome());
+            stmt.setString(2, produto.getModelo());
+            stmt.setInt(3, produto.getId());
             stmt.executeUpdate();
             stmt.close();
             
         } catch (SQLException e) {
-            throw new SQLException("Erro ao tentar alterar a material. \n" + e.getMessage());
+            throw new SQLException("Erro ao tentar alterar a produto. \n" + e.getMessage());
         }
     }
 
     @Override
     public void excluir(Object o) throws SQLException {
-        Produto material = (Produto) o;
+        Produto produto = (Produto) o;
         Connection conn = null;
         try {
             conn = FabricaConexao.getConexao();
 
-            String sql = "DELETE FROM public.material\n" +
+            String sql = "DELETE FROM public.produto\n" +
 "	WHERE id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             // preenche os valores                     
-            stmt.setLong(1, material.getId());
+            stmt.setLong(1, produto.getId());
             
             stmt.executeUpdate();
             stmt.close();
             
         } catch (SQLException e) {
-            throw new SQLException("Erro ao tentar remover a material. \n" + e.getMessage());
+            throw new SQLException("Erro ao tentar remover a produto. \n" + e.getMessage());
         }
     }
     
@@ -99,7 +99,7 @@ public class ProdutoDAO implements IDAO{
         try {
             conn = FabricaConexao.getConexao();
 
-            String sql = "DELETE FROM public.material\n" +
+            String sql = "DELETE FROM public.produto\n" +
 "	WHERE id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             // preenche os valores                     
@@ -109,7 +109,7 @@ public class ProdutoDAO implements IDAO{
             stmt.close();
             
         } catch (SQLException e) {
-            throw new SQLException("Erro ao tentar remover a material. \n" + e.getMessage());
+            throw new SQLException("Erro ao tentar remover a produto. \n" + e.getMessage());
         }
     }
 
@@ -120,7 +120,7 @@ public class ProdutoDAO implements IDAO{
         try {
             conn = FabricaConexao.getConexao();
             String sql = "SELECT id, nome, modelo\n" +
-"	FROM public.material ORDER BY id ASC;";
+"	FROM public.produto ORDER BY id ASC;";
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -138,7 +138,7 @@ public class ProdutoDAO implements IDAO{
             
             return lista;
         } catch (SQLException e) {
-            throw new SQLException("Eroo ao recuperar a lista de materials. \n" + e.getMessage());
+            throw new SQLException("Eroo ao recuperar a lista de produtos. \n" + e.getMessage());
         }
     }
 
@@ -148,7 +148,7 @@ public class ProdutoDAO implements IDAO{
         try {
             conn = FabricaConexao.getConexao();
             String sql = "SELECT id, nome, modelo\n" +
-"	FROM public.material WHERE id=?;";
+"	FROM public.produto WHERE id=?;";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
@@ -164,7 +164,7 @@ public class ProdutoDAO implements IDAO{
             
             return c;
         } catch (SQLException e) {
-            throw new SQLException("Erro ao recuperar a material. \n" + e.getMessage());
+            throw new SQLException("Erro ao recuperar a produto. \n" + e.getMessage());
         }
     }
     

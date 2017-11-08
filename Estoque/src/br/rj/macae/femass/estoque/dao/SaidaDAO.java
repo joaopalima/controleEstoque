@@ -32,14 +32,14 @@ public class SaidaDAO implements IDAO{
             conn = FabricaConexao.getConexao();
 
             String sql = "INSERT INTO public.saida(\n" +
-"	data, comentario, empregado, produto)\n" +
+"	data, comentario, produto, empregado)\n" +
 "	VALUES (?,?,?,?,?,?);";
             PreparedStatement stmt = conn.prepareStatement(sql);
             // preenche os valores         
             stmt.setString(1, saida.getData());
             stmt.setString(2, saida.getComentario());
             stmt.setInt(3, saida.getEmpregado().getId());
-           // stmt.setInt(4, saida.getProduto().getId());
+            //stmt.setInt(4, saida.getProduto().getId());
             
             stmt.executeUpdate();
             stmt.close();
@@ -57,7 +57,7 @@ public class SaidaDAO implements IDAO{
             conn = FabricaConexao.getConexao();
 
             String sql = "UPDATE public.saida\n" +
-"	SET data=?, comentario=?, empregado=?, produto=? \n" +
+"	SET data=?, comentario=?, produto=?, empregado=? \n" +
 "	WHERE id = ?";
         
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -125,7 +125,7 @@ public class SaidaDAO implements IDAO{
         ProdutoDAO edao = new ProdutoDAO();
         try {
             conn = FabricaConexao.getConexao();
-            String sql = "SELECT id, data, comentario, empregado, produto\n" +
+            String sql = "SELECT id, data, comentario, produto, empregado\n" +
 "	FROM public.saida ORDER BY id ASC;";
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
@@ -133,8 +133,8 @@ public class SaidaDAO implements IDAO{
                 Saida c = new Saida();
                 c.setData(rs.getString("data"));  
                 c.setComentario(rs.getString("comentario"));
-                c.setEmpregado((Empregado)cdao.listarPorId(rs.getInt("empregado")));
                 c.setProduto((Produto)edao.listarPorId(rs.getInt("produto")));
+                c.setEmpregado((Empregado)cdao.listarPorId(rs.getInt("empregado")));
                 
                 c.setId(rs.getInt("id"));
                 recuperarMateriais(c);
@@ -157,7 +157,7 @@ public class SaidaDAO implements IDAO{
         ProdutoDAO edao = new ProdutoDAO();
         try {
             conn = FabricaConexao.getConexao();
-            String sql = "SELECT id, data, comentario, empregado, produto\n" +
+            String sql = "SELECT id, data, comentario, produto, empregado\n" +
 "	FROM public.saida WHERE id=?;";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
@@ -166,8 +166,9 @@ public class SaidaDAO implements IDAO{
             Saida c = new Saida();
             c.setData(rs.getString("data"));  
                 c.setComentario(rs.getString("comentario"));
-                c.setEmpregado((Empregado)cdao.listarPorId(rs.getInt("empregado")));
                 c.setProduto((Produto)edao.listarPorId(rs.getInt("produto")));
+                c.setEmpregado((Empregado)cdao.listarPorId(rs.getInt("empregado")));
+
             c.setId(rs.getInt("id"));
             
 

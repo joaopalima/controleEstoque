@@ -122,7 +122,7 @@ public class SetorDAO implements IDAO{
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                Setor c = new Setor("");
+                Setor c = new Setor();
                 c.setNome(rs.getString("nome"));              
                 c.setId(rs.getInt("id"));
                 
@@ -149,7 +149,7 @@ public class SetorDAO implements IDAO{
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             rs.next();
-            Setor c = new Setor("");
+            Setor c = new Setor();
             c.setNome(rs.getString("nome"));              
             c.setId(rs.getInt("id"));
             

@@ -278,8 +278,9 @@ public class GuiSetor extends javax.swing.JInternalFrame {
         SetorControle controle = new SetorControle();
 
         try {
-            Setor c = new Setor("");
+            Setor c = new Setor();
             c.setNome(txtNome.getText());
+            
             if(tblSetores.getSelectedRow()>=0){
             c.setId((Integer) tblSetores.getValueAt(tblSetores.getSelectedRow(), 0));
         }

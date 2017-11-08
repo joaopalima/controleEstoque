@@ -22,7 +22,16 @@ public class Saida {
     private String comentario;
     private Empregado empregado;
     private Produto produto;
+    private Setor setor;
     private List<Saida_Produto> produtos;
+
+    public Setor getSetor() {
+        return setor;
+    }
+
+    public void setSetor(Setor setor) {
+        this.setor = setor;
+    }
     
 
     public Saida(Integer id) {
