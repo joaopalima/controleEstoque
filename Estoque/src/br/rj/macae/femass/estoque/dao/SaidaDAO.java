@@ -38,8 +38,9 @@ public class SaidaDAO implements IDAO{
             // preenche os valores         
             stmt.setString(1, saida.getData());
             stmt.setString(2, saida.getComentario());
-            stmt.setInt(3, saida.getEmpregado().getId());
-            //stmt.setInt(4, saida.getProduto().getId());
+            //stmt.setInt(3, saida.getProduto().getId());
+            stmt.setInt(4, saida.getEmpregado().getId());
+ 
             
             stmt.executeUpdate();
             stmt.close();
@@ -64,8 +65,8 @@ public class SaidaDAO implements IDAO{
             // preenche os valores         
             stmt.setString(1, saida.getData());
             stmt.setString(2, saida.getComentario());
-            stmt.setInt(3, saida.getEmpregado().getId());
-            //stmt.setInt(4, saida.getProduto().getId());
+            //stmt.setInt(3, saida.getProduto().getId());
+            stmt.setInt(4, saida.getEmpregado().getId());
             stmt.setInt(5, saida.getId());
             stmt.executeUpdate();
             stmt.close();
